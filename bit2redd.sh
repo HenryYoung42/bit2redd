@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2017-2018 The Reddcoin Fast developers
+# Copyright (c) 2017-2019 The Reddcoin Fast developers
 #
 # This script converts a fresh fork of reddcoin 0.18.x into reddcoin-fast
 #
@@ -20,10 +20,10 @@ find . -type f -print0 | xargs -0 sed -i '/^\/\/ Copyright.*Bitcoin Core develop
 
 # Update except in copyright notices:
 #
-#   Reddcoin Fast -> Reddcoin Fast
-#   Reddcoin -> Reddcoin
-#   reddcoin -> reddcoin
-#   REDDCOIN -> REDDCOIN
+#   Bitcoin Core -> Reddcoin Fast
+#   Bitcoin -> Reddcoin
+#   bitcoin -> reddcoin
+#   BITCOIN -> REDDCOIN
 
 find . -type f -print0 | xargs -0 sed -i '/Copyright/!s/Bitcoin Core/Reddcoin Fast/g'
 find . -type f -print0 | xargs -0 sed -i '/Copyright/!s/Bitcoin/Reddcoin/g'
@@ -32,20 +32,20 @@ find . -type f -print0 | xargs -0 sed -i '/Copyright/!s/BITCOIN/REDDCOIN/g'
 
 # Undo above changes in release notes
 
-sed -i 's/Reddcoin Fast/Reddcoin Fast/g' doc/release-notes/*
-sed -i 's/Reddcoin/Reddcoin/g' doc/release-notes/*
-sed -i 's/reddcoin/reddcoin/g' doc/release-notes/*
-sed -i 's/REDDCOIN/REDDCOIN/g' doc/release-notes/*
+sed -i 's/Reddcoin Fast/Bitcoin Core/g' doc/release-notes/*
+sed -i 's/Reddcoin/Bitcoin/g' doc/release-notes/*
+sed -i 's/reddcoin/bitcoin/g' doc/release-notes/*
+sed -i 's/REDDCOIN/BITCOIN/g' doc/release-notes/*
 
 # Rename source files
 
-find . -exec rename 's/Reddcoin/Reddcoin/' {} ";"
-find . -exec rename 's/reddcoin/reddcoin/' {} ";"
-find . -exec rename 's/REDDCOIN/REDDCOIN/' {} ";"
+find . -exec rename 's/Bitcoin/Reddcoin/' {} ";"
+find . -exec rename 's/bitcoin/reddcoin/' {} ";"
+find . -exec rename 's/BITCOIN/REDDCOIN/' {} ";"
 
 # Update currency symbol RDD -> RDD
 
-find . -type f -print0 | xargs -0 sed -i 's/RDD/RDD/g'
+find . -type f -print0 | xargs -0 sed -i 's/BTC/RDD/g'
 
 ### CHECK IF THIS NACKERS ANY TEST DATA : it probably does
 
